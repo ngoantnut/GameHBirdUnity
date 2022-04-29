@@ -6,7 +6,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Vector2 _startPoision;
+    //Serial de tuan tu hoa tep lenh
+    //De unity tai su dung sau nay, khac GameOject
     [SerializeField] float _launchForce = 500;
+    [SerializeField] float _maxDragDistance = 5;
     Rigidbody2D _rigidbody2D;
     SpriteRenderer _spriteRenderer;
     private void Awake()
@@ -37,7 +40,22 @@ public class Player : MonoBehaviour
      void OnMouseDrag()
     {
         Vector3 mousePoisiton = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = new Vector3(mousePoisiton.x, mousePoisiton.y, transform.position.z);
+        //Han chee pham vi hoat di chuyen Bird khi bat dau
+        Vector2 desiredPoisition = mousePoisiton;
+        
+
+        float distance = Vector2.Distance(desiredPoisition, _startPoision);
+        if (distance > _maxDragDistance)
+        {
+            Vector2 direction = desiredPoisition - _startPoision;
+            direction.Normalize();
+            desiredPoisition = _startPoision + (direction * _maxDragDistance);
+        }
+
+        if (desiredPoisition.x > _startPoision.x)
+            desiredPoisition.x = _startPoision.x;
+        _rigidbody2D.position = desiredPoisition;
+        //transform.position = new Vector3(mousePoisiton.x, mousePoisiton.y, transform.position.z);
     }
 
     // Update is called once per frame
