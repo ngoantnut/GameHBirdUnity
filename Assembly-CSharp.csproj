@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
+    <Compile Include="Assets\Script\LevelController.cs" />
+    <Compile Include="Assets\Script\Exit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
