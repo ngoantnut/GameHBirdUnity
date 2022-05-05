@@ -7,8 +7,6 @@ public class Exit : MonoBehaviour
 
     
     
-
-    
     
      public void ExitGame()
     {
